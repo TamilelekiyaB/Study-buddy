@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Study Tracker</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+<h1>Dashboard</h1>
+<a href="{{ url_for('add_chapter') }}">Add Chapter</a> |
+<a href="{{ url_for('add_question') }}">Add Question</a> |
+<a href="{{ url_for('progress') }}">View Progress</a> |
+<a href="{{ url_for('reminder') }}">Reminders</a>
+<hr>
+<ul>
+{% for chapter in chapters %}
+<li>
+{{ chapter.subject }} - {{ chapter.chapter }} : {{ chapter.status }}
+{% if chapter.note %}
+| <a href="{{ url_for('uploaded_file', filename=chapter.note) }}" target="_blank">View Note</a>
+{% endif %}
+| <a href="{{ url_for('take_test', chapter_id=chapter.id) }}">Take Test</a>
+</li>
+{% endfor %}
+</ul>
+</body>
+</html>
