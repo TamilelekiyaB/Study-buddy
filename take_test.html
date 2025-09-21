@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Take Test</title></head>
+<body>
+<h1>Test: {{ chapter.subject }} - {{ chapter.chapter }}</h1>
+<form method="POST">
+    {% for q in questions %}
+    <p>{{ loop.index }}. {{ q.question }}<br>
+    Answer: <input type="text" name="answer_{{ q.id }}" required></p>
+    {% endfor %}
+    <input type="submit" value="Submit Test">
+</form>
+<a href="{{ url_for('index') }}">Back to Dashboard</a>
+</body>
+</html>
